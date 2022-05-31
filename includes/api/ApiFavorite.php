@@ -32,9 +32,9 @@ class ApiFavorite extends ApiBase {
         $article = Article::newFromTitle( $title );
 
 		if ( $params['unfavorite'] ) {
-            $action = new UnfavoriteAction( $article );
+            $action = new UnfavoriteAction( $article, $this );
 		} else {
-            $action = new FavoriteAction( $article );
+            $action = new FavoriteAction( $article, $this );
         }
 
         $action.show();
