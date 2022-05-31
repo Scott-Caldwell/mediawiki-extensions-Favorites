@@ -26,7 +26,7 @@ class FavParser {
 			$output .= $this->editlink( $argv );
 			return $output;
 		} else {
-			$user = $parser->getUserIdentity();
+			$user = $parser->getUser();
 		}
 
 		# Anons don't get a favoritelist
