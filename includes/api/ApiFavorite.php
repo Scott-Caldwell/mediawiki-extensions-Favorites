@@ -37,14 +37,14 @@ class ApiFavorite extends ApiBase {
             $action = new FavoriteAction( $article, $this );
         }
 
-        $action.show();
+        $action->show();
 
-        if ( !$action.$success ) {
+        if ( !$action->$success ) {
 			$this->dieWithError( 'hookaborted' );
         }
 
-        $res[$action.getActionType()] = '';
-        $res['message'] = $this->msg( $action.successMessage(), $title->getPrefixedText() )->title( $title )->parseAsBlock();
+        $res[$action->getActionType()] = '';
+        $res['message'] = $this->msg( $action->successMessage(), $title->getPrefixedText() )->title( $title )->parseAsBlock();
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
