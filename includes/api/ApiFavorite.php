@@ -29,7 +29,7 @@ class ApiFavorite extends ApiBase {
 		}
 
 		$res = [ 'title' => $title->getPrefixedText() ];
-        $article = Article::newFromTitle( $title );
+        $article = Article::newFromTitle( $title, $this );
 
 		if ( $params['unfavorite'] ) {
             $action = new UnfavoriteAction( $article, $this );
