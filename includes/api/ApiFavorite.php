@@ -18,14 +18,14 @@ class ApiFavorite extends ApiBase {
 	public function execute() {
 		$user = $this->getUser();
 		if ( !$user->isRegistered() ) {
-			$this->dieUsage( 'You must be logged-in to have a favoritelist', 'notloggedin' );
+			$this->dieWithError( 'You must be logged-in to have a favoritelist', 'notloggedin' );
 		}
 
 		$params = $this->extractRequestParams();
 		$title = Title::newFromText( $params['title'] );
 
 		if ( !$title || $title->getNamespace() < 0 ) {
-			$this->dieUsageMsg( [ 'invalidtitle', $params['title'] ] );
+			$this->dieWithError( [ 'invalidtitle', $params['title'] ] );
 		}
 
 		$res = [ 'title' => $title->getPrefixedText() ];
@@ -42,7 +42,7 @@ class ApiFavorite extends ApiBase {
 			// $success = FavAction::doFavorite( $title, $user );
 		}
 		if ( !$success ) {
-			$this->dieUsageMsg( 'hookaborted' );
+			$this->dieWithError( 'hookaborted' );
 		}
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
