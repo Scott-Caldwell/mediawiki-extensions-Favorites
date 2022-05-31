@@ -8,10 +8,17 @@ class FavoriteAction extends BaseAction {
 		return 'favorite';
 	}
 
+    /**
+     * @inheritDoc
+     */
+    public function getActionType() {
+        return 'favorited';
+    }
+
 	/**
 	 * @inheritDoc
 	 */
-	protected function successMessage() {
+	public function successMessage() {
 		return 'addedfavoritetext';
 	}
 

@@ -8,10 +8,17 @@ class UnfavoriteAction extends BaseAction {
 		return 'unfavorite';
 	}
 
+    /**
+     * @inheritDoc
+     */
+    public function getActionType() {
+        return 'unfavorited';
+    }
+
 	/**
 	 * @return string
 	 */
-	protected function successMessage() {
+	public function successMessage() {
 		return 'removedfavoritetext';
 	}
 

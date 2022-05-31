@@ -31,19 +31,20 @@ class ApiFavorite extends ApiBase {
 		$res = [ 'title' => $title->getPrefixedText() ];
 
 		if ( $params['unfavorite'] ) {
-			$res['unfavorited'] = '';
-			$res['message'] = $this->msg( 'removedfavoritetext', $title->getPrefixedText() )->title( $title )->parseAsBlock();
-			$success = false;
-			// $success = UnfavoriteAction::doUnfavorite( $title, $user );
+            $action = new UnfavoriteAction();
 		} else {
-			$res['favorited'] = '';
-			$res['message'] = $this->msg( 'addedfavoritetext', $title->getPrefixedText() )->title( $title )->parseAsBlock();
-			$success = false;
-			// $success = FavAction::doFavorite( $title, $user );
-		}
-		if ( !$success ) {
+            $action = new FavoriteAction();
+        }
+
+        $action.show();
+
+        if ( !$action.$success ) {
 			$this->dieWithError( 'hookaborted' );
-		}
+        }
+
+        $res[$action.getActionType()] = '';
+        $res['message'] = $this->msg( $action.successMessage(), $title->getPrefixedText() )->title( $title )->parseAsBlock();
+
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 

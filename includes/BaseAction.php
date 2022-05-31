@@ -18,12 +18,21 @@ abstract class BaseAction extends Action {
 		if ( $this->doAction( $dbw, $subject, $user, $title ) ) {
 			$out->addWikiMsg( $this->successMessage(), $title->getPrefixedText() );
 			$user->invalidateCache();
+            $this->$success = true;
 		} else {
 			$out->addWikiMsg( 'favoriteerrortext', $title->getPrefixedText() );
+            $this->$success = false;
 		}
 	}
 
-	abstract protected function successMessage();
+    public $success;
+
+    /**
+     * @return string
+     */
+    abstract public function getActionType();
+
+	abstract public function successMessage();
 
 	/**
 	 * @param DBConnRef $dbw
