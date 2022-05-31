@@ -29,11 +29,12 @@ class ApiFavorite extends ApiBase {
 		}
 
 		$res = [ 'title' => $title->getPrefixedText() ];
+        $article = Article::newFromTitle( $title );
 
 		if ( $params['unfavorite'] ) {
-            $action = new UnfavoriteAction();
+            $action = new UnfavoriteAction( $article );
 		} else {
-            $action = new FavoriteAction();
+            $action = new FavoriteAction( $article );
         }
 
         $action.show();
