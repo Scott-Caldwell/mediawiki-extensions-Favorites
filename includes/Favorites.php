@@ -28,7 +28,7 @@ class Favorites {
 			return false;
 		}
 		$mode = $this->inFavorites( $ns, $titleKey ) ? 'unfavorite' : 'favorite';
-		if ( $wgUseIconFavorite ) {
+		if ( false && $wgUseIconFavorite ) { // TODO update when I get styling right
 			$class = 'icon ';
 			$place = 'views';
 			$text = '';
