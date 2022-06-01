@@ -28,10 +28,12 @@ class Favorites {
 			return false;
 		}
 		$mode = $this->inFavorites( $ns, $titleKey ) ? 'unfavorite' : 'favorite';
-		if ( false && $wgUseIconFavorite ) { // TODO update when I get styling right
-			$class = 'icon ';
+		if ( $wgUseIconFavorite ) {
+			//$class = 'icon ';
+            $class = false;
 			$place = 'views';
-			$text = '';
+			//$text = '';
+            $text = $sktemplate->msg( $mode )->text(); // TODO update when I get styling right
 		} else {
 			$class = '';
 			$text = $sktemplate->msg( $mode )->text();
